@@ -1,0 +1,361 @@
+:root{
+    --spacing-0-5: 4px;
+    --spacing-1: 8px;
+    --spacing-1-5: 12px;
+    --spacing-2: 16px;
+    --spacing-3: 24px;
+    --spacing-4: 32px;
+    --spacing-5: 40px;
+    --spacing-8: 64px;
+    --spacing-10: 80px;
+    --border-radius-1: 8px;
+    --border-radius-3: 24px;
+    --border-radius-pill: 500px; 
+    --color-primary-50: #0085EF;
+    --color-primary-100: #006bc3;
+    --color-secondary-50: #FFC85B;
+    --color-secondary-100: #de9708;
+    --color-neutral-100: #202020;
+    --color-neutral-0: #FFFFFF;
+    --color-neutral-50: #909090;
+    --color-header: #2f2f2fcc;
+    --color-card: #303030;
+    --color-form:#ffffff10;
+    --color-table: #d4d4d4;
+    --font-size-title: 48px;
+    --font-size-subtitle: 28px;
+    --font-size-body: 22px;
+    --font-size-component: 18px;
+    --time-animation: 150ms;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+/* Estilos */
+
+.button {
+    border-radius: var(--border-radius-pill);
+    padding: var(--spacing-1) var(--spacing-3);
+    border: none;
+    background-color: transparent;
+    font-size: var(--font-size-component);
+    cursor: pointer;
+    transition: var(--time-animation);
+    text-decoration: none;
+    text-align: center;
+}
+
+.button:active {
+    transform: scale(0.98);
+}
+
+.primary {
+    color: var(--color-neutral-0);
+    background-color: var(--color-primary-50);
+}
+
+.primary:hover {
+    background-color: var(--color-primary-100);
+}
+
+.secondary {
+    color: var(--color-secondary-50);
+    border: 2px solid var(--color-secondary-50);
+}
+
+.secondary:hover {
+    color: var(--color-secondary-100);
+    border: 2px solid var(--color-secondary-100);
+}
+
+.title {
+    text-align: center;
+    color: var(--color-neutral-0);
+    font-size: var(--font-size-title);
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: var(--font-size-subtitle);
+    color: var(--color-neutral-0);
+    font-weight: bold;
+    text-align: center;
+}
+
+.icon-action {
+    background-color: var(--color-secondary-50);
+    border-radius: var(--border-radius-pill);
+    display: flex;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    justify-content: center;
+}
+
+.center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    height: 100vh;
+    width: 100vw;
+}
+
+p {
+    color: var(--color-neutral-0);
+    font-size: var(--font-size-body);
+    text-align: center;
+}
+
+input {
+    background-color: var(--color-neutral-0);
+    padding: var(--spacing-2);
+    border: none;
+    border-radius: var(--border-radius-1);
+    font-size: var(--font-size-component);
+}
+
+.blur {
+    background-color: var(--color-form);
+    backdrop-filter: blur(12px);
+    border-radius: var(--border-radius-3);
+    padding: var(--spacing-3)
+}
+
+.blur > form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    margin-top: var(--spacing-3);
+}
+
+
+
+/* Header */
+
+header {
+    width: calc(100% - (2*var(--spacing-3)));
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-1) var(--spacing-3);
+    justify-content: space-between;
+    background-color: var(--color-header);
+    position: fixed;
+    backdrop-filter: blur(8px);
+    z-index: 400;
+}
+
+.icon {
+    height: 24px;
+    width: 24px;
+}
+
+.logo {
+    height: 56px;
+}
+
+nav{
+    display: flex;
+    gap: var(--spacing-3);
+}
+
+nav > a {
+    color: var(--color-neutral-0);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-0-5);
+    text-decoration: none;
+    transition: var(--time-animation);
+    font-size: var(--font-size-component);
+    cursor: pointer;
+}
+
+nav > a:hover {
+    transform: scale(1.05);
+}
+
+
+/* Section 1 - Capa */
+
+.capa {
+    background: url("../img/Banner/Pao_Acucar.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
+.capa div {
+    position: absolute;
+    margin-left: var(--spacing-10);
+    bottom: 180px;
+    gap: var(--spacing-2);
+    display: flex;
+    flex-direction: column;
+}
+
+.capa p {
+    max-width: 650px;
+    margin-left: var(--spacing-1);
+}
+
+h1 {
+    font-size: 184px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--color-neutral-0);
+    line-height: 120px;
+}
+
+
+
+
+/* Section 2 - Destino */
+
+.dark {
+    background-color: var(--color-neutral-100);
+}
+
+.dark > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.dark p {
+    text-align: center;
+}
+
+.cards{
+    margin-top: var(--spacing-8);
+    display: flex;
+    align-items: center;
+}
+
+.cards ul {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-2);
+}
+
+.card {
+    border-radius: var(--spacing-3);
+    background-color: var(--color-card);
+    cursor: pointer;
+}
+
+.card > img {
+    width: 350px;
+    height: 380px;
+    border-radius:var(--spacing-3) var(--spacing-3) 0 0;
+    margin-bottom: var(--spacing-2);
+}
+
+.card > p {
+    margin-top: var(--spacing-1);
+    margin-bottom: var(--spacing-2);
+    font-size: var(--font-size-component);
+}
+
+.card:nth-child(2n+1) { 
+    transform: scale(0.88);
+}
+
+
+/* Section 3 - Form */
+
+.cadastro {
+    background: url("../img/Banner/Passaro.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+}
+
+
+/* Section 2.1 - Passeio */
+
+.passeio {
+    background: url("../img/Banner/Vila.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
+.passeio div {
+    width: 800px;
+}
+
+#busca {
+    width: calc(100% - (2*var(--spacing-2)));
+    margin-top: var(--spacing-8);
+}
+
+.scroll {
+    height: 500px;
+    overflow: auto;
+    border-radius: var(--border-radius-3);
+    margin-top: var(--spacing-8);
+}
+
+table{
+    width: 100%;
+    background-color: white;
+    border-spacing: 0;
+}
+
+th {
+    padding: var(--spacing-1-5);
+    background-color: var(--color-secondary-50);
+    position: sticky;   
+    top:0;
+    font-size: var(--font-size-body);
+}
+
+th:nth-child(2){
+    border-left: 2px solid var(--color-secondary-100);
+    border-right: 2px solid var(--color-secondary-100);
+
+}
+
+td {
+    padding: var(--spacing-1-5) var(--spacing-3);
+    font-size: var(--font-size-component);
+}
+
+tr:nth-child(2n) {
+    background-color: var(--color-table);
+}
+
+
+.cidade {
+    background: url("../img/Banner/Natureza.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
+ul.cidades {
+    column-count: 2;
+    list-style: none;
+    font-size: var(--font-size-body);
+    color: var(--color-neutral-0);
+    margin-top: var(--spacing-8);
+    text-align: center;
+}
+
+.cidades li{
+    padding: var(--spacing-1-5) var(--spacing-4);
+}
+
+.login {
+    background: url("../img/Banner/Frevo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
