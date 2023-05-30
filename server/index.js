@@ -1,23 +1,7 @@
-
-    // Server.post("/Login", async (req, res) => {
-    //     const {login, senha} = req.body
-    //     const token = await Admin.get_Token(login, senha)
-
-    //     if(token){
-    //         res.statusCode = 200
-    //         res.json({token})
-    //         return
-
-    //     } else {
-    //         res.statusCode = 401
-    //         res.json("Os seus dados informados não conferem")
-    //     }
-    // })
-
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
+const db = require('../database/data')
 
 const app = express()
 app.use(bodyParser.json())
@@ -44,4 +28,16 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/pages/login.html'));
 })
 
-app.listen(3500);
+app.get('/dados-cards', async (req, res) => {
+    try {
+        const dados = await db.consultarLugar()
+        console.log(dados)
+        res.json(dados)
+    } catch (e) {
+      console.log(e)
+    }
+  });
+
+app.listen(3500, () => {
+    console.log("Server on...")
+});

@@ -1,23 +1,28 @@
-const back = document.getElementById("back")
+async function get_dados() {
+    var request = await fetch("/dados-cards", {
+        method: "GET",
+        headers: { 'Content-Type': 'application/json' },
+    })
+
+    var lugares = await request.json()
+    console.log(lugares)
+    return lugares;
+}
+
+async function main() {
+    
+    var lugares = await get_dados();
+
+    const back = document.getElementById("back")
 const next = document.getElementById("next")
 const card_1 = document.getElementById("card-1")
 const card_2 = document.getElementById("card-2")
 const card_3 = document.getElementById("card-3")
-
+    
 index_card1 = 0
 index_card2 = 1
 index_card3 = 2
 
-var lugares = [
-    {url:"../img/Cards/Sao_Paulo.png", cidade:"São Paulo", estado:"São Paulo"},
-    {url:"../img/Cards/Florianopolis.png", cidade:"Florianópolis", estado:"Santa Catarina"},
-    {url:"../img/Cards/Petropolis.png", cidade:"Petrópolis", estado:"Rio de Janeiro"},
-    {url:"../img/Cards/Cataratas.png", cidade:"Foz do Iguaçu", estado:"Paraná"},
-    {url:"../img/Cards/Chapada_Diamantina.png", cidade:"Chapada Diamantina", estado:"Bahia"},
-    {url:"../img/Cards/Gramado.png", cidade:"Gramado", estado:"Rio Grande do Sul"},
-    {url:"../img/Cards/Curitiba.png", cidade:"Curitiba", estado:"Paraná"},
-    {url:"../img/Cards/Rio_Janeiro.png", cidade:"Rio de Janeiro", estado:"Rio de Janeiro"},
-]
 
 next.onclick = () => {
     if(index_card3 == lugares.length-1){
@@ -42,6 +47,7 @@ next.onclick = () => {
                         <p>${lugares[index_card3].estado}</p>`
 }
 
+
 back.onclick = () => {
     if(index_card1 == 0){
         index_card3 = index_card2
@@ -64,4 +70,18 @@ back.onclick = () => {
     card_3.innerHTML = `<img src=${lugares[index_card3].url}></img>
                         <h3 class="subtitle">${lugares[index_card3].cidade}</h2>
                         <p>${lugares[index_card3].estado}</p>`
+    }
 }
+
+main();
+
+    // [
+    // {url:"../img/Cards/Sao_Paulo.png", cidade:"São Paulo", estado:"São Paulo"},
+    // {url:"../img/Cards/Florianopolis.png", cidade:"Florianópolis", estado:"Santa Catarina"},
+    // {url:"../img/Cards/Petropolis.png", cidade:"Petrópolis", estado:"Rio de Janeiro"},
+    // {url:"../img/Cards/Cataratas.png", cidade:"Foz do Iguaçu", estado:"Paraná"},
+    // {url:"../img/Cards/Chapada_Diamantina.png", cidade:"Chapada Diamantina", estado:"Bahia"},
+    // {url:"../img/Cards/Gramado.png", cidade:"Gramado", estado:"Rio Grande do Sul"},
+    // {url:"../img/Cards/Curitiba.png", cidade:"Curitiba", estado:"Paraná"},
+    // {url:"../img/Cards/Rio_Janeiro.png", cidade:"Rio de Janeiro", estado:"Rio de Janeiro"},
+    // ]
