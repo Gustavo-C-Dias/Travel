@@ -23,6 +23,18 @@ index_card1 = 0
 index_card2 = 1
 index_card3 = 2
 
+card_2.innerHTML = `<img src=${lugares[index_card2].url}></img>
+<h3 class="subtitle">${lugares[index_card2].cidade}</h2>
+<p>${lugares[index_card2].estado}</p>`
+
+card_1.innerHTML = `<img src=${lugares[index_card1].url}></img>
+<h3 class="subtitle">${lugares[index_card1].cidade}</h2>
+<p>${lugares[index_card1].estado}</p>`
+
+card_3.innerHTML = `<img src=${lugares[index_card3].url}></img>
+<h3 class="subtitle">${lugares[index_card3].cidade}</h2>
+<p>${lugares[index_card3].estado}</p>`
+
 
 next.onclick = () => {
     if(index_card3 == lugares.length-1){
