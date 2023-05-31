@@ -136,6 +136,21 @@ input {
     margin-top: var(--spacing-3);
 }
 
+#error { 
+    font-size: var(--font-size-component);
+    color: red;
+    text-align: center;
+}
+
+select {
+    background-color: var(--color-neutral-0);
+    padding: var(--spacing-2);
+    border: none;
+    border-radius: var(--border-radius-1);
+    font-size: var(--font-size-component);
+    margin-top: var(--spacing-1-5);
+}
+
 
 
 /* Header */
@@ -180,7 +195,6 @@ nav > a {
 nav > a:hover {
     transform: scale(1.05);
 }
-
 
 /* Section 1 - Capa */
 

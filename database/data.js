@@ -1,19 +1,23 @@
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('database/banco.db');
 
-    db.run(`CREATE TABLE IF NOT EXISTS clientes (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome TEXT,
-        email TEXT,
-        senha TEXT
-    )`)
+db.exec(`
+  CREATE TABLE IF NOT EXISTS clientes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT,
+    email TEXT UNIQUE,
+    senha TEXT
+  )`
+)
 
-    db.run(`CREATE TABLE IF NOT EXISTS lugares (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        url TEXT,
-        cidade TEXT,
-        estado TEXT
-    )`);
+db.exec(
+  `CREATE TABLE IF NOT EXISTS lugares (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    url TEXT,
+    cidade TEXT,
+    estado TEXT
+  )`
+);
 
 
 function consultarLugar() {
@@ -29,16 +33,40 @@ function consultarLugar() {
 }
 
 function adicionarLugar(url, cidade, estado) {
-    return new Promise((resolve, reject) => {
-      db.all(`INSERT INTO lugares (url, cidade, estado) VALUES (?, ?, ?)`, [url, cidade, estado], (err, rows) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(rows);
-        }
-      });
+  return new Promise((resolve, reject) => {
+    db.all(`INSERT INTO lugares (url, cidade, estado) VALUES (?, ?, ?)`, [url, cidade, estado], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      }
     });
-  }
+  });
+}
+
+function consultarUsuario(email, email) {
+  return new Promise((resolve, reject) => {
+    db.all('SELECT * FROM clientes WHERE email = ? AND senha = ?', [email, email], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      }
+    });
+  });
+}
+
+function adicionarUsuario (nome, email, senha){
+  return new Promise((resolve, reject) => {
+    db.all(`INSERT INTO clientes (nome, email, senha) VALUES (?, ?, ?)`, [nome, email, senha], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      }
+    });
+  });
+}
 
 // adicionarLugar("../img/Cards/Sao_Paulo.png", "São Paulo", "São Paulo")
 // adicionarLugar("../img/Cards/Florianopolis.png", "Florianópolis", "Santa Catarina")
@@ -49,5 +77,4 @@ function adicionarLugar(url, cidade, estado) {
 // adicionarLugar("../img/Cards/Curitiba.png", "Curitiba", "Paraná")
 // adicionarLugar("../img/Cards/Rio_Janeiro.png", "Rio de Janeiro", "Rio de Janeiro")
 
-  
-module.exports = {consultarLugar, adicionarLugar};
+module.exports = {consultarLugar, consultarUsuario, adicionarLugar, adicionarUsuario};

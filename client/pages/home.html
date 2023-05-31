@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pr-br">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
     <script src="../script/cards.js" defer></script>
     <script src="../script/home.js" defer></script>
+    <script src="../script/registro.js" defer></script>
 </head>
 <body>
     <header>
@@ -19,15 +20,15 @@
         </a>
       <nav>
         <a href="/passeios">
-            <img class="icon" src="../img/icones/Passeio.png">
+            <img class="icon" src="../img/icones/Passeio.png" alt="Avião">
             Passeios
         </a>
         <a href="/cidades">
-            <img class="icon" src="../img/icones/Cidade.png">
+            <img class="icon" src="../img/icones/Cidade.png" alt="Prédios">
             Cidade
         </a>
         <a href="/planos">
-            <img class="icon" src="../img/icones/Plano.png">
+            <img class="icon" src="../img/icones/Plano.png" alt="Bolsa">
             Planos
         </a>
         <a class="button primary" href="/login">
@@ -52,7 +53,7 @@
                 <p>Os melhores lugares para se viajar dentro do Brasil</p>
 
                 <div class="cards">
-                    <button id="back" alt="Voltar" class="icon-action button"><img class="icon" src="../img/icones/Back.png"></button>
+                    <button id="back" aria-label="Voltar" class="icon-action button"><img class="icon" src="../img/icones/Back.png" alt=""></button>
                     <ul>
                         <li id='card-1' class="card card-back">
                         </li>
@@ -61,7 +62,7 @@
                         <li id='card-3' class="card card-back">
                         </li>
                     </ul>
-                    <button id="next" alt="Proximo" class="icon-action button"><img class="icon" src="../img/Icones/Next.png"></button>
+                    <button id="next" aria-label="Proximo" class="icon-action button"><img class="icon" src="../img/Icones/Next.png" alt=""></button>
                 </div>
 
             </div>
@@ -72,9 +73,11 @@
                 <h2 class="title">Cadastra-se</h2>
                 <p>E acesse nossas novidades em primeira mão</p>
 
-                <form id="cadastro">
-                    <input type="text" placeholder="Nome">
-                    <input type="email" placeholder="E-mail">
+                <span id="error"></span>
+                <form>
+                    <input type="text" name="nome" placeholder="Nome" required>
+                    <input type="email" name="email" placeholder="E-mail" required>
+                    <input type="password" name="senha" placeholder="Senha" required>
                     <button class="button primary">Cadastrar</button>
                 </form>
             </div>

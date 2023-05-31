@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../script/login.js" defer></script>
 </head>
 <body>
     <header>
@@ -17,15 +18,15 @@
         </a>
       <nav>
         <a href="/passeios">
-            <img class="icon" src="../img/icones/Passeio.png">
+            <img class="icon" src="../img/icones/Passeio.png" alt="Avião">
             Passeios
         </a>
         <a href="/cidades">
-            <img class="icon" src="../img/icones/Cidade.png">
+            <img class="icon" src="../img/icones/Cidade.png" alt="Prédios">
             Cidade
         </a>
         <a href="/planos">
-            <img class="icon" src="../img/icones/Plano.png">
+            <img class="icon" src="../img/icones/Plano.png" alt="Bolsa">
             Planos
         </a>
         <a class="button primary" href="/login">
@@ -40,8 +41,8 @@
                 <h2 class="title">Entrar</h2>
                 <p>Digite as informações para acessar sua conta</p>
                 <form>
-                    <input type="text" placeholder="Nome">
-                    <input type="email" placeholder="E-mail">
+                    <input type="text" name="email" placeholder="Email" required>
+                    <input type="password" name="senha" placeholder="Senha" required>
                     <button class="button primary">Acessar</button>
                 </form>
             </div>

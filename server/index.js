@@ -28,10 +28,32 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/pages/login.html'));
 })
 
+app.post('/login', async (req, res) => {
+    try {
+        const dados = await db.consultarUsuario(req.body.email, req.body.senha)
+        res.json(dados)
+    } catch (e) {
+      console.log(e)
+    }
+})
+
+app.post('/cadastro-usuario', async (req, res)=> {
+    try {
+        const dados = await db.adicionarUsuario(req.body.nome, req.body.email, req.body.senha)
+        console.log(dados)
+        res.json(dados)
+    } catch (e) {
+      console.log(e)
+    }
+})
+
+app.get('/inserir', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/pages/inserir.html'));
+})
+
 app.get('/dados-cards', async (req, res) => {
     try {
         const dados = await db.consultarLugar()
-        console.log(dados)
         res.json(dados)
     } catch (e) {
       console.log(e)
