@@ -47,20 +47,25 @@
                     <option value="Lista">Lista</option>
                 </select>
 
-                <form id="inserir-card">
+                <form id="form-card">
                     <input type="text" name="cidade" placeholder="Cidade">
                     <input type="text" name="estado" placeholder="Estado">
-                    <input type="url" name="imagem" placeholder="Imagem">
-                    <select>
+                    <input type="url" name="url" placeholder="URL imagem">
+                    <select id="acao-card" required>
                         <option disabled selected>Escolha uma ação</option>
-                        <option value="Card">Cards</option>
-                        <option value="Lista">Lista Destinos</option>
+                        <option value="inserir">Inserir</option>
+                        <option value="remover">Remover</option>
                     </select>
                     <button type="submit" class="primary button">Cadastrar</button>
                 </form>
 
-                <form id="inserir-lista">
+                <form id="form-lista">
                     <input type="text" name="cidade" placeholder="Cidade">
+                    <select id="acao-lista" required>
+                        <option disabled selected>Escolha uma ação</option>
+                        <option value="inserir">Inserir</option>
+                        <option value="remover">Remover</option>
+                    </select>
                     <button type="submit" class="primary button">Cadastrar</button>
                 </form>
             </div>

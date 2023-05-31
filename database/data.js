@@ -19,6 +19,13 @@ db.exec(
   )`
 );
 
+db.exec(
+  `CREATE TABLE IF NOT EXISTS lista_lugares (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    cidade TEXT UNIQUE
+  )`
+);
+
 
 function consultarLugar() {
   return new Promise((resolve, reject) => {
@@ -35,6 +42,54 @@ function consultarLugar() {
 function adicionarLugar(url, cidade, estado) {
   return new Promise((resolve, reject) => {
     db.all(`INSERT INTO lugares (url, cidade, estado) VALUES (?, ?, ?)`, [url, cidade, estado], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      }
+    });
+  });
+}
+
+function removerLugar(cidade) {
+  return new Promise((resolve, reject) => {
+    db.all(`DELETE FROM lugares WHERE cidade = ?`, [cidade], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      }
+    });
+  });
+}
+
+function consultarLugarLista() {
+  return new Promise((resolve, reject) => {
+    db.all('SELECT cidade FROM lista_lugares;', [], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      }
+    });
+  });
+}
+
+function adicionarLugarLista(cidade) {
+  return new Promise((resolve, reject) => {
+    db.all(`INSERT INTO lista_lugares (cidade) VALUES (?)`, [cidade], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      }
+    });
+  });
+}
+
+function removerLugarLista(cidade) {
+  return new Promise((resolve, reject) => {
+    db.all(`DELETE FROM lista_lugares WHERE cidade = ?`, [cidade], (err, rows) => {
       if (err) {
         reject(err);
       } else {
@@ -77,4 +132,28 @@ function adicionarUsuario (nome, email, senha){
 // adicionarLugar("../img/Cards/Curitiba.png", "Curitiba", "Paraná")
 // adicionarLugar("../img/Cards/Rio_Janeiro.png", "Rio de Janeiro", "Rio de Janeiro")
 
-module.exports = {consultarLugar, consultarUsuario, adicionarLugar, adicionarUsuario};
+// adicionarLugarLista('Salvador')
+// adicionarLugarLista('Ouro Preto')
+// adicionarLugarLista('Manaus')
+// adicionarLugarLista('Holambra')
+// adicionarLugarLista('Tiradentes')
+// adicionarLugarLista('Maceió')
+// adicionarLugarLista('Belo Horizonte')
+// adicionarLugarLista('Urubici')
+// adicionarLugarLista('Porto Alegre')
+// adicionarLugarLista('Recife')
+// adicionarLugarLista('São Luís')
+// adicionarLugarLista('Brasília')
+// adicionarLugarLista('Acaraju')
+// adicionarLugarLista('Belém')
+
+module.exports = {
+  consultarLugar,
+  consultarUsuario,
+  consultarLugarLista,
+  adicionarLugar,
+  adicionarUsuario,
+  adicionarLugarLista,
+  removerLugar,
+  removerLugarLista,
+};

@@ -28,6 +28,30 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/pages/login.html'));
 })
 
+app.get('/inserir', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/pages/inserir.html'));
+})
+
+app.get('/dados-cards', async (req, res) => {
+    try {
+        const dados = await db.consultarLugar()
+        res.json(dados)
+    } catch (e) {
+      console.log(e)
+    }
+  });
+
+  app.get('/dados-lista', async (req, res) => {
+    try {
+        const dados = await db.consultarLugarLista()
+        console.log("Chamadda")
+        res.json(dados)
+    } catch (e) {
+      console.log(e)
+    }
+  });
+
+
 app.post('/login', async (req, res) => {
     try {
         const dados = await db.consultarUsuario(req.body.email, req.body.senha)
@@ -47,18 +71,45 @@ app.post('/cadastro-usuario', async (req, res)=> {
     }
 })
 
-app.get('/inserir', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/pages/inserir.html'));
-})
-
-app.get('/dados-cards', async (req, res) => {
+app.post('/form-card', async (req, res)=> {
     try {
-        const dados = await db.consultarLugar()
+        const dados = await db.adicionarLugar(req.body.url, req.body.cidade, req.body.estado)
+        console.log(dados)
         res.json(dados)
     } catch (e) {
       console.log(e)
     }
-  });
+})
+
+app.delete('/form-card', async (req, res)=> {
+    try {
+        const dados = await db.removerLugar(req.body.cidade)
+        console.log(dados)
+        res.json(dados)
+    } catch (e) {
+      console.log(e)
+    }
+})
+
+app.post('/form-lista', async (req, res)=> {
+    try {
+        const dados = await db.adicionarLugar(req.body.url, req.body.cidade, req.body.estado)
+        console.log(dados)
+        res.json(dados)
+    } catch (e) {
+      console.log(e)
+    }
+})
+
+app.delete('/form-lista', async (req, res)=> {
+    try {
+        const dados = await db.removerLugar(req.body.cidade)
+        console.log(dados)
+        res.json(dados)
+    } catch (e) {
+      console.log(e)
+    }
+})
 
 app.listen(3500, () => {
     console.log("Server on...")

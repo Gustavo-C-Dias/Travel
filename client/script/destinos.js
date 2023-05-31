@@ -1,6 +1,6 @@
 const destino = document.getElementById("destino");
-const form_cards = document.getElementById("inserir-card")
-const form_lista = document.getElementById("inserir-lista")
+const form_cards = document.getElementById("form-card")
+const form_lista = document.getElementById("form-lista")
 
 form_cards.style.display = "none";
 form_lista.style.display = "none";
@@ -8,30 +8,43 @@ form_lista.style.display = "none";
 destino.addEventListener("change", () => {
     switch (destino.value) {
       case 'Card':
-        console.log("Aqui");
         form_cards.style.display = "flex";
         form_lista.style.display = "none";
         break;
       case 'Lista':
-        console.log("Lá");
         form_cards.style.display = "none";
         form_lista.style.display = "flex";
         break;
     }
-  });
-
+});
 
 
   form_cards.addEventListener("submit", async ev => {
+    let acao = document.getElementById("acao-card")
     ev.preventDefault()
-    var request = await fetch("/cadastro-card", {
-        method: "POST",
+    if(acao.options[acao.selectedIndex].value == 'inserir'){
+      var request = await fetch("/form-card", {
+          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ cidade: form_cards.cidade.value, estado: form_cards.estado.value, url: form_cards.url.value })
+      })
+      if(request.status == 200){
+          alert("Um novo card foi adicionado ao sistema")
+          window.location.href = '/'
+      } else {
+          alert("Tivemos problema no seu cadastro")
+      }
+    } else {
+      var request = await fetch("/form-card", {
+        method: "DELETE",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cidade: form.cidade.value, estado: form.estado.value, url: form.url.value })
-    })
+        body: JSON.stringify({ cidade: form_cards.cidade.value })
+      })
     if(request.status == 200){
+        alert("Um novo card foi removido do sistema")
         window.location.href = '/'
     } else {
-        alert("Tivemos problema no seu cadastro")
+        alert("Tivemos problema na sua remoção")
+    }
     }
 })
